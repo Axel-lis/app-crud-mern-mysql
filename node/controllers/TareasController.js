@@ -62,3 +62,22 @@ export const deleteTarea = async (req, res) =>{
         res.json({message: error.message})
     }
 }
+ // traer tareas para el calendario
+export const getAllTareasCalendar = async (req, res) => {
+  try {
+    const tareas = await TareaModel.findAll();
+    const eventos = tareas.map((tarea) => ({
+      id: tarea.id,
+      title: tarea.title,
+      start: tarea.dateinicio,
+      end: tarea.datefin,
+      description: tarea.description
+    }));
+    res.json(eventos); // Envía la respuesta como JSON al cliente
+  } catch (error) {
+    res.json({ message: error.message });
+    console.log(error);
+  }
+};
+
+

@@ -19,11 +19,6 @@ try{
     console.log(`Error de conexion a Base de Datos:${error}`)
 }
 
-/*
-app.get('/', (req, res) =>{
-    res.send('Hola Mundo!')
-})
-*/
 app.listen(8000, ()=>{
     console.log('Servidor corriendo en el puerto 8000...')
 })

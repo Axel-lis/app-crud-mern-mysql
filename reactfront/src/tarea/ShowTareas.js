@@ -56,6 +56,7 @@ const CompShowTareas = () => {
           <button onClick={handleSort} className='btn btn-secondary mt-2 mb-2'>
             Ordenar por fecha {orderBy === 'asc' ? 'ascendente' : 'descendente  '}
           </button>
+       
           <table className='table'>
             <thead className='table-primary'>
               <tr>

@@ -16,7 +16,7 @@ const CompCreateTarea = () =>{
   //procedimiento guardar
   const store = async (e) =>{
     e.preventDefault()
-    axios.post(URI, {title:title, description:description, dateinicio:dateinicio, datefin:datefin})
+    await axios.post(URI, {title:title, description:description, dateinicio:dateinicio, datefin:datefin})
     Swal.fire({icon:"success",title:'Tarea guardada con éxito!'})
     navigate('/')
   }
