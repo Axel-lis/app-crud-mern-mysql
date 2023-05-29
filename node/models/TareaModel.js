@@ -8,5 +8,6 @@ const TareaModel= db.define('tareas',{
     description:{type: DataTypes.STRING},
     dateinicio:{type: DataTypes.DATE},
     datefin:{type: DataTypes.DATE}
+    
 })
 export default TareaModel;

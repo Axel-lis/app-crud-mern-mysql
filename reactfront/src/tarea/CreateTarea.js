@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import CustomNavbar from '../navbar/Navbar.js';
 const URI = 'http://localhost:8000/tareas/'; 
 
 const CompCreateTarea = () =>{
@@ -22,6 +23,7 @@ const CompCreateTarea = () =>{
   }
 
 return(
+<>    <CustomNavbar />  
     <div>
      <h3>Crear tarea</h3>
         <form onSubmit={store}>
@@ -65,6 +67,7 @@ return(
 </form>
 
 </div>
+</>
     )
 }
 export default CompCreateTarea;

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import CustomNavbar from '../navbar/Navbar.js';
+
 const URI = 'http://localhost:8000/tareas/';
 
 const CompShowTareas = () => {
@@ -49,6 +51,7 @@ const CompShowTareas = () => {
   };
 
   return (
+<>    <CustomNavbar />  
     <div className='container'>
       <div className='row'>
         <div className='col'>
@@ -89,6 +92,7 @@ const CompShowTareas = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

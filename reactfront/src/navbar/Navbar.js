@@ -23,7 +23,9 @@ const CustomNavbar = () => {
               <DropdownItem>
               <Link to="/calendar">Calendario</Link> 
               </DropdownItem>
-              <DropdownItem href="#">Logout</DropdownItem>
+              <DropdownItem>
+                <Link to="/register">Logout</Link>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </NavItem>

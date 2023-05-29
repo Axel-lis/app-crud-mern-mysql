@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import CustomNavbar from '../navbar/Navbar.js';
 
 const URI = 'http://localhost:8000/tareas/calendar';
 
@@ -39,6 +40,7 @@ const Calendario = () => {
   };
 
   return (
+<><CustomNavbar />
     <div style={{ width: '100vw', height: '100vh' }} className="calendar-container">
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
@@ -56,6 +58,7 @@ const Calendario = () => {
         events={eventos}
       />
     </div>
+    </>
   );
 };
 
