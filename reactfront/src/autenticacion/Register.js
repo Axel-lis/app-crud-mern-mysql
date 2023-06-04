@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 const URI = 'http://localhost:8000/tareas/register';
 
 const Register = () => {
+  
+  axios.defaults.withCredentials = true; //necesario
+
   // Hooks
   const [nombre, setNombre] = useState('');
   const [mail, setMail] = useState('');

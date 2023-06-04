@@ -4,10 +4,13 @@ const router = express.Router();
 import {
     registerUser,
     loginUser,
+    logoutUser
   } from '../controllers/UsuariosController.js';
 //rutas login registro
 router.post('/register', registerUser);
 router.post('/login', loginUser);
+router.get('/login', loginUser);
+router.post('/logout', logoutUser);
 
 router.get('/calendar', getAllTareasCalendar); // Ruta para obtener las tareas del calendario
 router.get('/:id', getTarea); // Ruta para obtener una tarea por su ID
