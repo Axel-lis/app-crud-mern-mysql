@@ -2,7 +2,12 @@ import db from "../database/db.js";
 import { DataTypes } from "sequelize";
 import TareaModel from "./TareaModel.js";
 
-const Usuario = db.define('usuarios', {
+const UsuarioModel = db.define('usuarios', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   name: {
     type: DataTypes.STRING(50),
     allowNull: false,
@@ -18,10 +23,15 @@ const Usuario = db.define('usuarios', {
   }
 });
 
-Usuario.associate = (models) => {
-  Usuario.hasMany(models.TareaModel, {
-    foreignKey: 'userId'
-  });
+const models = {
+  UsuarioModel,
+  TareaModel
 };
 
-export default Usuario;
+Object.values(models).forEach((model) => {
+  if (model.associate) {
+    model.associate(models);
+  }
+});
+
+export default models;

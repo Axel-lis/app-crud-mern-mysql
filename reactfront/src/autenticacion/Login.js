@@ -28,12 +28,14 @@ const Login = () => {
         return;
       }
   // Realizar la solicitud GET a '/login'
-      const response = await axios.get(URI, {
-        responseType: 'json',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }); 
+  const response = await axios.get(URI, {
+    responseType: 'json',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true, // Incluye las cookies en la solicitud
+  });
+  
   
       if (response.data.loggedIn) {
         // El usuario está logueado

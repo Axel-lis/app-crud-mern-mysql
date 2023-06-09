@@ -1,15 +1,17 @@
 import express from 'express';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUserLogin
+} from '../controllers/UsuariosController.js';
 import { createTarea, deleteTarea, getAllTareas, getAllTareasCalendar, getTarea, updateTarea } from '../controllers/TareasController.js';
 const router = express.Router();
-import {
-    registerUser,
-    loginUser,
-    logoutUser
-  } from '../controllers/UsuariosController.js';
+
 //rutas login registro
 router.post('/register', registerUser);
+router.get('/login', getUserLogin);
 router.post('/login', loginUser);
-router.get('/login', loginUser);
 router.post('/logout', logoutUser);
 
 router.get('/calendar', getAllTareasCalendar); // Ruta para obtener las tareas del calendario

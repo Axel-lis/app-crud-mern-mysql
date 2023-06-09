@@ -64,6 +64,7 @@ return(
         />
      </div>
      <button type='submit' className='btn btn-primary mb-3'>Guardar</button>
+     <button type='button' onClick={() =>navigate('/')} className='btn btn-danger mb-3'>Cancelar</button>
 </form>
 
 </div>

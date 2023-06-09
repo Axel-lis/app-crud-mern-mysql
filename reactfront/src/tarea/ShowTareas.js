@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import moment from 'moment';
 import CustomNavbar from '../navbar/Navbar.js';
 
+axios.defaults.withCredentials = true; // Necesario
 const URI = 'http://localhost:8000/tareas/';
 
 const CompShowTareas = () => {
@@ -16,9 +17,15 @@ const CompShowTareas = () => {
   }, []);
 
   const getTareas = async () => {
-    const res = await axios.get(URI);
-    setTarea(res.data);
+    try {
+      const res = await axios.get(URI);
+      console.log(res.data); // Agrega este log para verificar las tareas obtenidas desde la API
+      setTarea(res.data);
+    } catch (error) {
+      console.log(error); // Agrega este log para mostrar cualquier error en la consola
+    }
   };
+  
 
   const deleteTarea = async (id) => {
     await axios.delete(`${URI}${id}`);

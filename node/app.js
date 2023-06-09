@@ -15,6 +15,7 @@ app.use(
       origin: ["http://localhost:3000"],
       methods: ["GET", "POST", "PUT", "DELETE"],
       credentials: true, // importante para que la cookie este activada
+      allowedHeaders: ["Content-Type", "Authorization"]
     })
   );
   
@@ -23,15 +24,16 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true})); // importantisimo
 
+  
 //middleware de sesión debe ejecutarse antes de que las rutas sean alcanzadas
 // lo que permite que req.session esté disponible en tus rutas y evita el error.
 app.use(session({
     key: "userId", //nombre de la cookie
     secret: "contraseñasegura2",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
-        expires: 12 * 60 * 60 * 1000 //12hs 
+        expires: 12 * 60 * 60 * 1000, //12hs 
     },
 }));
 

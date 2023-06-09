@@ -2,6 +2,11 @@ import db from "../database/db.js";
 import { DataTypes } from "sequelize";
 
 const TareaModel = db.define('tareas', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   title: {
     type: DataTypes.STRING(100)
   },
@@ -13,6 +18,10 @@ const TareaModel = db.define('tareas', {
   },
   datefin: {
     type: DataTypes.DATE
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 });
 
