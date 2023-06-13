@@ -14,18 +14,26 @@ const CompEditTarea = () =>{
 
  const navigate = useNavigate()
  const {id} = useParams()
- //procedimiento para guardar
- const update = async (e) =>{
-    e.preventDefault()
-    await axios.put(URI+id, {
-        title:title,
-        description:description,
-        dateinicio:dateinicio,
-        datefin:datefin
-    })
-    Swal.fire({icon:"success",title:'Tarea actualizada con éxito!'})
-    navigate('/')
- }
+ //procedimiento para actualizar
+ const update = async (e) => {
+   e.preventDefault();
+   try {
+     await axios.put(URI + id, {
+       title: title,
+       description: description,
+       dateinicio: dateinicio,
+       datefin: datefin,
+     });
+     Swal.fire({ icon: "success", title: "Tarea actualizada con éxito!" });
+     navigate("/");
+   } catch (error) {
+     if (error.response.status === 401) {
+       // El usuario no está autenticado
+       navigate("/login");
+     }
+   }
+ };
+ 
  useEffect(()=>{
     getTareaById()
  },[])

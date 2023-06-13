@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import CustomNavbar from '../navbar/Navbar.js';
@@ -8,7 +8,8 @@ import CustomNavbar from '../navbar/Navbar.js';
 axios.defaults.withCredentials = true; // Necesario
 const URI = 'http://localhost:8000/tareas/';
 
-const CompShowTareas = () => {
+const CompShowTareas = (props) => {
+  const navigate = useNavigate();
   const [tareas, setTarea] = useState([]);
   const [orderBy, setOrderBy] = useState('asc'); // Estado para almacenar el tipo de ordenación (ascendente o descendente)
 
@@ -22,6 +23,10 @@ const CompShowTareas = () => {
       console.log(res.data); // Agrega este log para verificar las tareas obtenidas desde la API
       setTarea(res.data);
     } catch (error) {
+      if (error.response.status === 401) {
+        // El usuario no está autenticado
+        navigate('/login');
+      };
       console.log(error); // Agrega este log para mostrar cualquier error en la consola
     }
   };
@@ -58,7 +63,7 @@ const CompShowTareas = () => {
   };
 
   return (
-<>    <CustomNavbar />  
+<>    <CustomNavbar username={props.username}  />  
     <div className='container'>
       <div className='row'>
         <div className='col'>

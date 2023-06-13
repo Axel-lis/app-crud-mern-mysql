@@ -1,9 +1,8 @@
 import React from 'react';
 import { Navbar, NavbarNav, NavItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
-import { Link } from 'react-router-dom'; // Importamos el componente Link
+import { Link } from 'react-router-dom'; 
 
-
-const CustomNavbar = () => {
+const CustomNavbar = (props) => {
   return (
     <Navbar light expand="lg" className="bg-light">
       <NavbarNav>
@@ -17,6 +16,7 @@ const CustomNavbar = () => {
                 alt="Portrait of user"
                 loading="lazy"
               />
+                <span className="ml-2">{props.username}</span>
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem href="/">Home</DropdownItem>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -10,7 +11,8 @@ import jsPDF from 'jspdf';
 
 const URI = 'http://localhost:8000/tareas/calendar';
 
-const Calendario = () => {
+const Calendario = (props) => {
+  const navigate = useNavigate();
   const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
@@ -22,7 +24,11 @@ const Calendario = () => {
       const response = await axios.get(URI);
       setEventos(asignarColores(response.data));
     } catch (error) {
-      console.error(error);
+      if (error.response.status === 401) {
+        // El usuario no está autenticado
+        navigate('/login');
+      };
+      console.log(error); // Agrega este log para mostrar cualquier error en la consola
     }
   };
 
@@ -67,7 +73,7 @@ const generatePDF = () => {
 
   return (
     <>
-      <CustomNavbar />
+      <CustomNavbar username={props.username}  />  
       <div style={{ width: '100vw', height: '120vh' }} className="calendar-container">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}

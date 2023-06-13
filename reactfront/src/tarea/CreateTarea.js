@@ -15,13 +15,20 @@ const CompCreateTarea = () =>{
   const navigate = useNavigate();
 
   //procedimiento guardar
-  const store = async (e) =>{
-    e.preventDefault()
-    await axios.post(URI, {title:title, description:description, dateinicio:dateinicio, datefin:datefin})
-    Swal.fire({icon:"success",title:'Tarea guardada con éxito!'})
-    navigate('/')
-  }
-
+  const store = async (e) => {
+     e.preventDefault();
+     try {
+       await axios.post(URI, { title: title, description: description, dateinicio: dateinicio, datefin: datefin });
+       Swal.fire({ icon: "success", title: "Tarea guardada con éxito!" });
+       navigate("/");
+     } catch (error) {
+       if (error.response.status === 401) {
+         // El usuario no está autenticado
+         navigate("/login");
+       }
+     }
+   };
+   
 return(
 <>    <CustomNavbar />  
     <div>

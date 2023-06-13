@@ -64,7 +64,8 @@ export const loginUser = async (req, res) => {
       const { id, name, email } = usuario.get();
   
       // Enviar una respuesta con la propiedad loggedIn y el usuario
-      res.status(200).json({ loggedIn: true, user: { id, name, email } });
+      res.status(200).json({ loggedIn: true, user: { id, name, email} });
+      
     } else {
       // Contraseña incorrecta
       res.status(401).json({ mensaje: 'Contraseña incorrecta' });
@@ -81,10 +82,10 @@ export const getUserLogin = async (req, res) => {
     if (req.session.userId) {
       // El usuario está logueado
       // Obtener el usuario de la base de datos utilizando el ID almacenado en la sesión
-      const usuario = await Usuario.findByPk(req.session.userId);
-      console.log(usuario)
+      const usuario = await Usuario.findByPk(req.session.userId)
       // Enviar una respuesta con la propiedad loggedIn y el usuario
       res.status(200).json({ loggedIn: true, user: usuario });
+
     } else {
       // El usuario no está logueado
       res.status(401).json({ loggedIn: false });
@@ -108,4 +109,3 @@ export const logoutUser = (req, res) => {
     }
   });
 };
-

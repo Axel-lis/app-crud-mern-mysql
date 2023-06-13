@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const URI = 'http://localhost:8000/tareas/login';
 
-const Login = () => {
+const Login = ({setNombreDeUsuario}) => {
   axios.defaults.withCredentials = true; // necesario
 
   const [email, setEmail] = useState('');
@@ -34,14 +34,11 @@ const Login = () => {
       'Content-Type': 'application/json',
     },
     withCredentials: true, // Incluye las cookies en la solicitud
-  });
-  
-  
+  }); 
       if (response.data.loggedIn) {
         // El usuario está logueado
         navigate('/');
       }
-  
       return response.data; // Devolver los datos de la respuesta
     } catch (error) {
       console.log(error);
@@ -71,6 +68,8 @@ const Login = () => {
       // Verificar si el inicio de sesión fue exitoso
       if (response.status === 200) {
         // Acción a realizar cuando el inicio de sesión es exitoso
+        setNombreDeUsuario(response.data.user.name); // Actualizar el estado con el nombre
+        localStorage.setItem('nombreDeUsuario', response.data.user.name);
         Swal.fire({
           icon: 'success',
           title: 'Inicio de sesión exitoso',
