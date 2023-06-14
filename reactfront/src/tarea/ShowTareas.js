@@ -7,6 +7,7 @@ import CustomNavbar from '../navbar/Navbar.js';
 
 axios.defaults.withCredentials = true; // Necesario
 const URI = 'http://localhost:8000/tareas/';
+const URIdelete =  'http://localhost:8000/tareas/delete';
 
 const CompShowTareas = (props) => {
   const navigate = useNavigate();
@@ -33,10 +34,11 @@ const CompShowTareas = (props) => {
   
 
   const deleteTarea = async (id) => {
-    await axios.delete(`${URI}${id}`);
-    Swal.fire({icon:"error", title:"Tarea eliminada"})
+    await axios.delete(`${URIdelete}/${id}`);
+    Swal.fire({icon: "error", title: "Tarea eliminada"});
     getTareas();
   };
+  
 
   const formatDate = (date) => {
     return moment(date).format("DD/MM/YYYY");

@@ -2,10 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Swal from 'sweetalert2';
+import CustomNavbar from '../navbar/Navbar.js';
 
 const URI = 'http://localhost:8000/tareas/'
+const URIupdate = 'http://localhost:8000/tareas/update/';
 
-const CompEditTarea = () =>{
+const CompEditTarea = (props) =>{
  //hooks
  const [title, setTitle] = useState('');
  const [description, setDescription] = useState('');
@@ -18,7 +20,7 @@ const CompEditTarea = () =>{
  const update = async (e) => {
    e.preventDefault();
    try {
-     await axios.put(URI + id, {
+     await axios.put(URIupdate + id, {
        title: title,
        description: description,
        dateinicio: dateinicio,
@@ -45,6 +47,8 @@ const CompEditTarea = () =>{
     setDatefin(res.data.datefin)
  }
  return(
+  
+<>    <CustomNavbar username={props.username}  />  
     <div>
      <h3>Editar Tarea</h3>
         <form onSubmit={update}>
@@ -88,6 +92,7 @@ const CompEditTarea = () =>{
 </form>
 
 </div>
+</>
  )
 }
 

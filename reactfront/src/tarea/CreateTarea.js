@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import CustomNavbar from '../navbar/Navbar.js';
 const URI = 'http://localhost:8000/tareas/'; 
 
-const CompCreateTarea = () =>{
+const CompCreateTarea = (props) =>{
     //hooks
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -30,7 +30,7 @@ const CompCreateTarea = () =>{
    };
    
 return(
-<>    <CustomNavbar />  
+<>    <CustomNavbar username={props.username} />  
     <div>
      <h3>Crear tarea</h3>
         <form onSubmit={store}>
